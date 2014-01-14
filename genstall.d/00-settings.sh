@@ -19,6 +19,6 @@ export TIMEZONE="Europe/London"
 export HOSTNAME="gentoo"
 export PASSWORD="gentoo"
 
-export SOFTWARE="app-admin/syslog-ng sys-process/vixie-cron"
-export DAEMONS="syslog-ng vixie-cron sshd"
+export SOFTWARE="app-admin/syslog-ng sys-process/cronie"
+export DAEMONS="syslog-ng cronie sshd"
 EOF
