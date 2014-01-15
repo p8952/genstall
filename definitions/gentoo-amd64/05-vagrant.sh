@@ -24,3 +24,5 @@ $CHROOT emerge app-admin/sudo app-emulation/virtualbox-guest-additions
 cat >> /mnt/gentoo/etc/sudoers << EOF
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF
+
+$CHROOT rc-update add virtualbox-guest-additions default
