@@ -28,8 +28,8 @@ mount --rbind /sys /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 
 $CHROOT emerge-webrsync
-$CHROOT emerge --sync
-$CHROOT eselect news read all
+$CHROOT emerge --sync --quiet
+$CHROOT eselect news read --quiet all
 
 echo $TIMEZONE > /mnt/gentoo/etc/timezone
 $CHROOT emerge --config sys-libs/timezone-data
