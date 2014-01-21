@@ -3,7 +3,7 @@ source /tmp/00-settings.sh
 
 cd /mnt/gentoo
 wget $STAGE3_URI
-tar xvjpf stage3-*.tar.bz2
+tar xjpf stage3-*.tar.bz2
 rm stage3-*.tar.bz2
 
 cat > /mnt/gentoo/etc/portage/make.conf << EOF
