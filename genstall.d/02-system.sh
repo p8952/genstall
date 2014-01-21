@@ -11,8 +11,8 @@ CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
 
-MAKEOPTS="-j2 -l0.75"
-EMERGE_DEFAULT_OPTS="--jobs=2 --load-average=0.75"
+MAKEOPTS="-j3 -l1.75"
+EMERGE_DEFAULT_OPTS="--jobs=3 --load-average=1.75"
 
 USE="bindist mmx sse sse2"
 PORTDIR="/usr/portage"

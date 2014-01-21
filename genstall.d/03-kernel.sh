@@ -5,7 +5,7 @@ $CHROOT emerge sys-kernel/gentoo-sources sys-kernel/genkernel sys-boot/grub
 
 $CHROOT /bin/bash << EOF 
 cd /usr/src/linux 
-genkernel all
+genkernel all --makeopts=-j3
 grub2-install /dev/sda
 grub2-mkconfig -o /boot/grub/grub.cfg
 EOF
