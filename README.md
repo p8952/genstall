@@ -18,7 +18,7 @@ Boot from a [Live CD](http://www.sysresccd.org/SystemRescueCd_Homepage) and run:
 Usage: With Veewee/Vagrant
 --------------------------
 
-Install Veewee and Vagrant packages for your distribution:
+Install [Veewee](https://github.com/jedi4ever/veewee) and [Vagrant](http://www.vagrantup.com/) packages for your distribution:
 
     emerge -av app-emulation/vagrant
 	gem install veewee --no-ri --no-rdoc
@@ -36,4 +36,4 @@ Import the base box to Vagrant:
 
     vagrant box add gentoo-amd64 gentoo-amd64.box
 
-Refer to [vagrant documentation](http://www.vagrantup.com/) for further usage.
+Refer to [vagrant documentation](http://www.vagrantup.com/v2/) for further usage.
