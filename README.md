@@ -15,8 +15,8 @@ Boot from a [Live CD](http://www.sysresccd.org/SystemRescueCd_Homepage) and run:
 	bash install.sh
 
 
-Usage: With Veewee/Vagrant
---------------------------
+Usage: With Veewee & Vagrant
+----------------------------
 
 Install [Veewee](https://github.com/jedi4ever/veewee) and [Vagrant](http://www.vagrantup.com/) packages for your distribution:
 
@@ -36,4 +36,4 @@ Import the base box to Vagrant:
 
     vagrant box add gentoo-amd64 gentoo-amd64.box
 
-Refer to [vagrant documentation](http://www.vagrantup.com/v2/) for further usage.
+Refer to [Vagrant's documentation](http://www.vagrantup.com/v2/) for further usage.
