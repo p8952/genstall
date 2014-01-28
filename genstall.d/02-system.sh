@@ -2,7 +2,7 @@
 source /tmp/00-settings.sh
 
 cd /mnt/gentoo
-wget $STAGE3_URI
+wget $_STAGE3_URI
 tar xjpf stage3-*.tar.bz2
 rm stage3-*.tar.bz2
 
@@ -27,18 +27,18 @@ mount -t proc proc /mnt/gentoo/proc
 mount --rbind /sys /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 
-$CHROOT emerge-webrsync
-$CHROOT emerge --sync --quiet
-$CHROOT eselect news read --quiet all
+$_CHROOT emerge-webrsync
+$_CHROOT emerge --sync --quiet
+$_CHROOT eselect news read --quiet all
 
 echo $TIMEZONE > /mnt/gentoo/etc/timezone
-$CHROOT emerge --config sys-libs/timezone-data
+$_CHROOT emerge --config sys-libs/timezone-data
 
 cat > /mnt/gentoo/etc/locale.gen << EOF
 en_US ISO-8859-1
 en_US.UTF-8 UTF-8
 EOF
-$CHROOT locale-gen
+$_CHROOT locale-gen
 
 cat > /mnt/gentoo/etc/fstab << EOF
 # <fs>        <mountpoint>        <type>        <opts>            <dump/pass>
@@ -57,13 +57,13 @@ cat > /mnt/gentoo/etc/conf.d/net << EOF
 config_$ETH0="dhcp"
 EOF
 
-$CHROOT /bin/bash << EOF 
+$_CHROOT /bin/bash << EOF 
 cd /etc/init.d
 ln -s net.lo net.$ETH0
 rc-update add net.$ETH0 default
 EOF
 
-$CHROOT passwd root << EOF
+$_CHROOT passwd root << EOF
 $PASSWORD
 $PASSWORD
 EOF
