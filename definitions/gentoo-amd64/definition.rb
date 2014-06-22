@@ -9,9 +9,9 @@ Veewee::Definition.declare({
 	:disk_format => 'VDI',
 	:hostiocache => 'off',
 	:os_type_id  => 'Gentoo_64',
-	:iso_file    => 'systemrescuecd-x86-4.1.0.iso',
-	:iso_src     => 'http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/s/sy/systemrescuecd/sysresccd-x86/4.1.0/systemrescuecd-x86-4.1.0.iso',
-	:iso_md5     => '1d0d27375de9ce21982e9305195aa438',
+	:iso_file    => 'systemrescuecd-x86-4.2.0.iso',
+	:iso_src     => 'http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/s/sy/systemrescuecd/sysresccd-x86/4.2.0/systemrescuecd-x86-4.2.0.iso',
+	:iso_md5     => '155603390e65f2a8341328be3cb63875',
 	:iso_download_timeout => 10000,
 	:boot_wait => '5',
 	:boot_cmd_sequence => [
