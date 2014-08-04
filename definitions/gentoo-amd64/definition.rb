@@ -1,7 +1,3 @@
-genstall_files = Dir.glob('../../genstall.d/*.sh')
-veewee_files = Dir.glob('*.sh')
-genstall_files.concat(veewee_files)
-
 Veewee::Definition.declare({
 	:cpu_count   => 2,
 	:memory_size => '512',
@@ -25,6 +21,7 @@ Veewee::Definition.declare({
 	:ssh_password      => 'vagrant',
 	:ssh_host_port     => '2222',
 	:ssh_guest_port    => '22',
-	:postinstall_files => genstall_files.sort_by { |f| File.basename(f) },
+	:shutdown_cmd      => 'shutdown -h now',
+	:postinstall_files => ["00-settings.sh", "10-disk.sh", "20-system.sh", "30-configuration.sh", "40-kernel.sh", "50-software.sh", "60-vagrant.sh", "99-final.sh"],
 	:postinstall_timeout => 10000
 })

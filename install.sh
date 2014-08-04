@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
 for F in genstall.d/*; do
-	bash "$F"
+	if [[ ! "$F" =~ 'vagrant' ]]; then
+		bash "$F"
+	fi
 done
