@@ -1,57 +1,59 @@
 {
-  "builders": [
-    {
-      "boot_command": [
-        "<tab><wait>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><wait>",
-        "setkmap=us rootpass=vagrant<wait>",
-        "<enter><wait>"
-      ],
-      "boot_wait": "5s",
-      "disk_size": 40960,
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "guest_os_type": "Gentoo_64",
-      "iso_checksum": "228c7b86ed082a4f7357f5ac45be7a54",
-      "iso_checksum_type": "md5",
-      "iso_url": "http://downloads.sourceforge.net/project/systemrescuecd/sysresccd-x86/4.3.0/systemrescuecd-x86-4.3.0.iso",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_username": "root",
-      "ssh_wait_timeout": "10000s",
-	  "shutdown_command": "shutdown -h now",
-      "type": "virtualbox-iso",
-	  "headless": "true",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "512"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          2
-        ]
-      ],
-      "virtualbox_version_file": ".vbox_version"
-    }
-  ],
-  "provisioners": [
-    {
-      "scripts": [
-        "genstall.d/00-settings.sh",
-        "genstall.d/10-disk.sh",
-        "genstall.d/20-system.sh",
-        "genstall.d/30-configuration.sh",
-        "genstall.d/40-kernel.sh",
-        "genstall.d/50-software.sh",
-        "genstall.d/60-vagrant.sh",
-        "genstall.d/99-final.sh"
-      ],
-      "type": "shell"
-    }
-  ],
-  "post-processors": ["vagrant"]
+	"builders": [
+		{
+			"boot_command": [
+				"<tab><wait>",
+				"<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><wait>",
+				"setkmap=us rootpass=vagrant<wait>",
+				"<enter><wait>"
+			],
+			"boot_wait": "5s",
+			"disk_size": 40960,
+			"guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+			"guest_os_type": "Gentoo_64",
+			"headless": "true",
+			"iso_checksum": "228c7b86ed082a4f7357f5ac45be7a54",
+			"iso_checksum_type": "md5",
+			"iso_url": "http://downloads.sourceforge.net/project/systemrescuecd/sysresccd-x86/4.3.0/systemrescuecd-x86-4.3.0.iso",
+			"shutdown_command": "shutdown -h now",
+			"ssh_password": "vagrant",
+			"ssh_port": 22,
+			"ssh_username": "root",
+			"ssh_wait_timeout": "10000s",
+			"type": "virtualbox-iso",
+			"vboxmanage": [
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--memory",
+					"512"
+				],
+				[
+					"modifyvm",
+					"{{.Name}}",
+					"--cpus",
+					2
+				]
+			],
+			"virtualbox_version_file": ".vbox_version"
+		}
+	],
+	"post-processors": [
+		"vagrant"
+	],
+	"provisioners": [
+		{
+			"scripts": [
+				"genstall.d/00-settings.sh",
+				"genstall.d/10-disk.sh",
+				"genstall.d/20-system.sh",
+				"genstall.d/30-configuration.sh",
+				"genstall.d/40-kernel.sh",
+				"genstall.d/50-software.sh",
+				"genstall.d/60-vagrant.sh",
+				"genstall.d/99-final.sh"
+			],
+			"type": "shell"
+		}
+	]
 }
