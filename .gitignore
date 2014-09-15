@@ -1,5 +1,5 @@
+*.box
 .vagrant/
 Vagrantfile
-gentoo-amd64.box
 iso/
 packer_cache/
