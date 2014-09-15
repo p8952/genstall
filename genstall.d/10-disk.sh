@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o errexit
 source /tmp/00-settings.sh
 
 sgdisk -n 1:0:+32M -t 1:ef02 -c 1:"bios-boot"  \

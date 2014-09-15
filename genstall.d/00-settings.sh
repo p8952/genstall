@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o errexit
 
 cat > /tmp/00-settings.sh << "EOF"
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o errexit
 source /tmp/00-settings.sh
 
 $_CHROOT useradd -m -s /bin/bash vagrant

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o errexit
 source /tmp/00-settings.sh
 
 echo $TIMEZONE > /mnt/gentoo/etc/timezone
@@ -27,7 +28,7 @@ cat > /mnt/gentoo/etc/conf.d/net << EOF
 config_$ETH0="dhcp"
 EOF
 
-$_CHROOT /bin/bash << EOF 
+$_CHROOT /bin/bash << EOF
 cd /etc/init.d
 ln -s net.lo net.$ETH0
 rc-update add net.$ETH0 default
