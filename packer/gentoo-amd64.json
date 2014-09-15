@@ -41,17 +41,36 @@
 	],
 	"provisioners": [
 		{
-			"scripts": [
-				"genstall.d/00-settings.sh",
-				"genstall.d/10-disk.sh",
-				"genstall.d/20-system.sh",
-				"genstall.d/30-configuration.sh",
-				"genstall.d/40-kernel.sh",
-				"genstall.d/50-software.sh",
-				"genstall.d/60-vagrant.sh",
-				"genstall.d/99-final.sh"
-			],
-			"type": "shell"
+			"type": "shell",
+			"script": "genstall.d/00-settings.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/10-disk.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/20-system.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/30-configuration.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/40-kernel.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/50-software.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/60-vagrant.sh"
+		},
+		{
+			"type": "shell",
+			"script": "genstall.d/99-final.sh"
 		}
 	]
 }
