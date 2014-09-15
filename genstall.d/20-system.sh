@@ -28,5 +28,4 @@ mount --rbind /sys /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 
 $_CHROOT emerge-webrsync
-$_CHROOT emerge --sync --quiet
 $_CHROOT eselect news read --quiet all
