@@ -14,8 +14,8 @@ export ROOT_SIZE="+10G"
 export BOOT_FS="ext2"
 export ROOT_FS="ext4"
 
-export TIMEZONE="Europe/London"
-export HOSTNAME="my-gentoo-box"
+export TIMEZONE="UTC"
+export HOSTNAME="gentoo-amd64"
 export PASSWORD="gentoo"
 
 export SOFTWARE="app-admin/syslog-ng sys-process/cronie"
