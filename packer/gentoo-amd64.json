@@ -12,7 +12,7 @@
 			"iso_checksum": "228c7b86ed082a4f7357f5ac45be7a54",
 			"iso_checksum_type": "md5",
 			"iso_url": "http://downloads.sourceforge.net/project/systemrescuecd/sysresccd-x86/4.3.0/systemrescuecd-x86-4.3.0.iso",
-			"name": "gentoo-amd64",
+			"name": "gentoo-amd64-vbox",
 			"shutdown_command": "shutdown -h now",
 			"ssh_password": "vagrant",
 			"ssh_username": "root",
@@ -46,6 +46,7 @@
 		},
 		{
 			"type": "shell",
+			"only": ["gentoo-amd64-vbox"],
 			"script": "genstall.d/10-disk.sh"
 		},
 		{
@@ -58,6 +59,7 @@
 		},
 		{
 			"type": "shell",
+			"only": ["gentoo-amd64-vbox"],
 			"script": "genstall.d/40-kernel.sh"
 		},
 		{
@@ -66,6 +68,7 @@
 		},
 		{
 			"type": "shell",
+			"only": ["gentoo-amd64-vbox"],
 			"script": "genstall.d/60-vagrant.sh"
 		},
 		{
