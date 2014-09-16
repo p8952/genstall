@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -o errexit
 source /tmp/00-settings.sh
+[[ $(whoami) == 'root' ]] || exec sudo su -c $0 root
 
+mkdir -p /mnt/gentoo
 cd /mnt/gentoo
 wget $_STAGE3_URI
 tar xjpf stage3-*.tar.bz2
@@ -24,9 +26,9 @@ EOF
 
 cp -L /etc/resolv.conf /mnt/gentoo/etc/
 
+mount --rbind /dev /mnt/gentoo/dev
 mount -t proc proc /mnt/gentoo/proc
 mount --rbind /sys /mnt/gentoo/sys
-mount --rbind /dev /mnt/gentoo/dev
 
 $_CHROOT emerge-webrsync
 $_CHROOT eselect news read --quiet all

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit
 source /tmp/00-settings.sh
+[[ $(whoami) == 'root' ]] || exec sudo su -c $0 root
 
 echo $TIMEZONE > /mnt/gentoo/etc/timezone
 $_CHROOT emerge --config sys-libs/timezone-data

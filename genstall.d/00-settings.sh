@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit
+[[ $(whoami) == 'root' ]] || exec sudo su -c $0 root
 
 cat > /tmp/00-settings.sh << "EOF"
 
