@@ -36,7 +36,7 @@
 	"post-processors": [
 		{
 			"type": "vagrant",
-			"output": "{{isotime}}-{{.BuildName}}.box"
+			"output": "{{.BuildName}}-{{timestamp}}.box"
 		}
 	],
 	"provisioners": [
@@ -68,8 +68,12 @@
 		},
 		{
 			"type": "shell",
+			"script": "genstall.d/extra/vagrant.sh"
+		},
+		{
+			"type": "shell",
 			"only": ["gentoo-amd64-vbox"],
-			"script": "genstall.d/60-vagrant.sh"
+			"script": "genstall.d/extra/vbox.sh"
 		},
 		{
 			"type": "shell",

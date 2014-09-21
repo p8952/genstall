@@ -6,4 +6,3 @@ source /tmp/00-settings.sh
 cd /
 umount -l /mnt/gentoo/dev{/shm,/pts,} || true
 umount -l /mnt/gentoo{/boot,/proc,} || true
-
