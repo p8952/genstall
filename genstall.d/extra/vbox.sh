@@ -3,7 +3,7 @@ set -o errexit
 source /tmp/00-settings.sh
 [[ $(whoami) == 'root' ]] || exec sudo su -c $0 root
 
-$_CHROOT emerge app-emulation/virtualbox-guest-additions
+_EMERGE app-emulation/virtualbox-guest-additions
 $_CHROOT rc-update add virtualbox-guest-additions default
 
 $_CHROOT /bin/bash << EOF

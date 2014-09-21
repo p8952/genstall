@@ -22,7 +22,7 @@ $_CHROOT chmod -R 0700 /home/vagrant/.ssh/
 $_CHROOT chmod -R 0600 /home/vagrant/.ssh/authorized_keys
 $_CHROOT chown -R vagrant:vagrant /home/vagrant/.ssh/
 
-$_CHROOT emerge app-admin/sudo
+_EMERGE app-admin/sudo
 cat >> /mnt/gentoo/etc/sudoers << EOF
 vagrant ALL=(ALL) NOPASSWD: ALL
 EOF

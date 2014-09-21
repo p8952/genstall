@@ -6,27 +6,37 @@ cat > /tmp/00-settings.sh << "EOF"
 
 # User Editable Variables
 
-export DIST_MIRROR="http://mirror.bytemark.co.uk/gentoo/"
-export SYNC_MIRROR="rsync://mirror.bytemark.co.uk/gentoo-portage"
+DIST_MIRROR="http://mirror.bytemark.co.uk/gentoo/"
+SYNC_MIRROR="rsync://mirror.bytemark.co.uk/gentoo-portage"
 
-export BOOT_SIZE="+256MB"
-export SWAP_SIZE="+1G"
-export ROOT_SIZE="+10G"
+BOOT_SIZE="+256MB"
+SWAP_SIZE="+1G"
+ROOT_SIZE="+10G"
 
-export BOOT_FS="ext2"
-export ROOT_FS="ext4"
+BOOT_FS="ext2"
+ROOT_FS="ext4"
 
-export TIMEZONE="UTC"
-export HOSTNAME="gentoo-amd64"
-export PASSWORD="gentoo"
+TIMEZONE="UTC"
+HOSTNAME="gentoo-amd64"
+PASSWORD="gentoo"
 
-export SOFTWARE="app-admin/syslog-ng sys-process/cronie"
-export DAEMONS="syslog-ng cronie sshd"
+SOFTWARE="app-admin/syslog-ng sys-process/cronie"
+DAEMONS="syslog-ng cronie sshd"
 
 # Internal Variables
 
-export _LATEST_STAGE3=$(curl -s $DIST_MIRROR/releases/amd64/autobuilds/latest-stage3-amd64.txt | tail -1)
-export _STAGE3_URI="$DIST_MIRROR/releases/amd64/autobuilds/$_LATEST_STAGE3"
-export _CHROOT="chroot /mnt/gentoo"
+_LATEST_STAGE3=$(curl -s $DIST_MIRROR/releases/amd64/autobuilds/latest-stage3-amd64.txt | tail -1)
+_STAGE3_URI="$DIST_MIRROR/releases/amd64/autobuilds/$_LATEST_STAGE3"
+_CHROOT="chroot /mnt/gentoo"
+function _EMERGE() {
+	set +e
+	$_CHROOT emerge --pretend "$@"
+	if [[ $? == 1 ]]; then
+		$_CHROOT emerge --autounmask-write "$@"
+		$_CHROOT etc-update --automode -5
+	fi
+	$_CHROOT emerge "$@"
+	set -e
+}
 
 EOF
