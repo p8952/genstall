@@ -31,6 +31,16 @@
 					"2"
 				]
 			]
+		},
+		{
+			"ami_name": "gentoo-amd64-{{timestamp}}",
+			"ami_virtualization_type": "hvm",
+			"instance_type": "t2.micro",
+			"name": "gentoo-amd64-aws",
+			"region": "eu-west-1",
+			"source_ami": "ami-892fe1fe",
+			"ssh_username": "ec2-user",
+			"type": "amazon-ebs"
 		}
 	],
 	"post-processors": [
@@ -74,6 +84,11 @@
 			"type": "shell",
 			"only": ["gentoo-amd64-vbox"],
 			"script": "genstall.d/extra/vbox.sh"
+		},
+		{
+			"type": "shell",
+			"only": ["gentoo-amd64-aws"],
+			"script": "genstall.d/extra/aws.sh"
 		},
 		{
 			"type": "shell",
