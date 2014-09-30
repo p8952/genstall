@@ -9,36 +9,73 @@ Usage: On Bare Metal
 
 Boot from a [Live CD](http://www.sysresccd.org/SystemRescueCd_Homepage) and run:
 
-    curl -L https://api.github.com/repos/p8952/genstall/tarball > genstall.tar.gz
+	curl -L https://api.github.com/repos/p8952/genstall/tarball > genstall.tar.gz
 	tar xvf genstall.tar.gz
 	cd p8952-genstall-xxxx
 	bash install.sh
 
 
-Usage: With Veewee & Vagrant
+Usage: With Packer & Vagrant
 ----------------------------
 
-Install [Veewee](https://github.com/jedi4ever/veewee) and
-[Vagrant](http://www.vagrantup.com/) packages for your distribution:
+Prerequisites:
 
-    emerge -av app-emulation/vagrant
-	gem install veewee --no-ri --no-rdoc
+* [Packer](http://www.packer.io/)
+* [Vagrant](http://www.vagrantup.com/)
 
-Clone and enter the repository:
+Build VirtualBox VM with Packer:
 
-    git clone https://github.com/p8952/genstall.git
-	cd genstall
+	packer build --only=gentoo-amd64-vbox packer/gentoo-amd64.json
 
-Build the base box using Veewee:
+Import VirtualBox VM to Vagrant:
 
-    veewee vbox build gentoo-amd64 --auto --nogui
+	vagrant box add gentoo-amd64 gentoo-amd64-vbox-<timestamp>.box
 
-Import the base box to Vagrant:
+Vagrantfile for VirtualBox VM:
 
-    vagrant box add gentoo-amd64 gentoo-amd64.box
+	Vagrant.configure(2) do |config|
+		config.vm.box = "gentoo-amd64"
+	end
 
-Refer to [Vagrant's documentation](http://www.vagrantup.com/v2/) for further
-usage.
+Launch VirtualBox VM with Vagrant:
+
+	vagrant up
+	vagrant ssh
+	exit
+	vagrant destroy
+
+Build AWS AMI with Packer:
+
+	export AWS_ACCESS_KEY="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	export AWS_SECRET_KEY="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+	packer build --only=gentoo-amd64-aws packer/gentoo-amd64.json
+
+Import AWS AMI to Vagrant:
+
+	vagrant box add gentoo-amd64 gentoo-amd64-aws-<timestamp>.box
+
+Vagrantfile for AWS AMI:
+
+	Vagrant.configure(2) do |config|
+			config.vm.box = "gentoo-amd64"
+			config.vm.provider :aws do |aws, override|
+					aws.instance_type = "t2.micro"
+					aws.region = "eu-west-1"
+					aws.keypair_name = "AWS-Key"
+					override.ssh.username = "ec2-user"
+					override.ssh.private_key_path = "~/.ssh/AWS-Key.pem"
+			end
+	end
+
+Launch AWS AMI with Vagrant:
+
+	vagrant plugin install vagrant-aws
+	vagrant up --provider=aws
+	vagrant ssh
+	exit
+	vagrant destroy
+
+Refer to [Vagrant's documentation](http://www.vagrantup.com/v2/) for further usage.
 
 Configuration
 -------------
