@@ -43,6 +43,22 @@ EOF
 $_CHROOT chmod +x /etc/init.d/cloud-init
 $_CHROOT rc-update add cloud-init default
 
+# Compile kernel based on Amazon Linux config
+_EMERGE sys-kernel/gentoo-sources sys-kernel/genkernel
+$_CHROOT /bin/bash << EOF
+cp /boot/config-$(uname -r) /usr/src/linux/.config
+cd /usr/src/linux
+make --quiet olddefconfig
+make --quiet -jobs=3
+make --quiet modules_install
+make --quiet install
+genkernel initramfs
+make --quiet clean
+sed -i "s/Amazon Linux.*/Gentoo Linux $(date +"%Y.%m")/g" /boot/grub/menu.lst
+sed -i "s/vmlinuz-$(uname -r)/vmlinuz-$(cat /usr/src/linux/include/config/kernel.release)/g" /boot/grub/menu.lst
+sed -i "s/initramfs-$(uname -r).img/initramfs-genkernel-x86_64-$(cat /usr/src/linux/include/config/kernel.release)/g" /boot/grub/menu.lst
+EOF
+
 # Copy our chroot environment over our live environment
 rsync --archive --delete --exclude /mnt \
 	--exclude /mnt/gentoo/dev --exclude /dev \

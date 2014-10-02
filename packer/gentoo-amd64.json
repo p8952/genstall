@@ -36,6 +36,14 @@
 			"ami_name": "gentoo-amd64-{{timestamp}}",
 			"ami_virtualization_type": "hvm",
 			"instance_type": "t2.micro",
+			"launch_block_device_mappings": [
+				{
+					"delete_on_termination": true,
+					"device_name": "/dev/xvda",
+					"volume_size": "10",
+					"volume_type": "gp2"
+				}
+			],
 			"name": "gentoo-amd64-aws",
 			"region": "eu-west-1",
 			"source_ami": "ami-892fe1fe",
