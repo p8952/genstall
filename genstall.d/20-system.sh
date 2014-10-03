@@ -14,7 +14,7 @@ CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
 
-MAKEOPTS="-j3 -l1.75"
+MAKEOPTS="--jobs=$_CORES"
 EMERGE_DEFAULT_OPTS="--jobs=3 --load-average=1.75"
 
 USE="bindist mmx sse sse2"

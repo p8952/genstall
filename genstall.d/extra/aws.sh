@@ -48,16 +48,16 @@ _EMERGE sys-kernel/gentoo-sources sys-kernel/genkernel
 $_CHROOT /bin/bash << EOF
 cp /boot/config-$(uname -r) /usr/src/linux/.config
 cd /usr/src/linux
-make --quiet olddefconfig
-make --quiet -jobs=3
-make --quiet modules_install
-make --quiet install
+make olddefconfig
+make --jobs=$_CORES
+make modules_install
+make install
 genkernel initramfs
-make --quiet clean
-sed -i "s/Amazon Linux.*/Gentoo Linux $(date +"%Y.%m")/g" /boot/grub/menu.lst
-sed -i "s/vmlinuz-$(uname -r)/vmlinuz-$(cat /usr/src/linux/include/config/kernel.release)/g" /boot/grub/menu.lst
-sed -i "s/initramfs-$(uname -r).img/initramfs-genkernel-x86_64-$(cat /usr/src/linux/include/config/kernel.release)/g" /boot/grub/menu.lst
+make clean
 EOF
+sed -i "s/Amazon Linux.*/Gentoo Linux $(date +"%Y.%m")/g" /boot/grub/menu.lst
+sed -i "s/vmlinuz-$(uname -r)/vmlinuz-$(cat /mnt/gentoo/usr/src/linux/include/config/kernel.release)/g" /boot/grub/menu.lst
+sed -i "s/initramfs-$(uname -r).img/initramfs-genkernel-x86_64-$(cat /mnt/gentoo/usr/src/linux/include/config/kernel.release)/g" /boot/grub/menu.lst
 
 # Copy our chroot environment over our live environment
 rsync --archive --delete --exclude /mnt \
