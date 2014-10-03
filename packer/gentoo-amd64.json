@@ -1,4 +1,7 @@
 {
+	"variables": {
+		"aws_instance_type": "t2.micro"
+	},
 	"builders": [
 		{
 			"boot_command": [
@@ -35,7 +38,7 @@
 		{
 			"ami_name": "gentoo-amd64-{{timestamp}}",
 			"ami_virtualization_type": "hvm",
-			"instance_type": "t2.micro",
+			"instance_type": "{{user `aws_instance_type`}}",
 			"launch_block_device_mappings": [
 				{
 					"delete_on_termination": true,
