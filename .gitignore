@@ -1,4 +1,5 @@
 *.box
+*.log
 .vagrant/
 Vagrantfile
 iso/
