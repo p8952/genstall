@@ -15,7 +15,7 @@ CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
 
 MAKEOPTS="--jobs=$_CORES"
-EMERGE_DEFAULT_OPTS="--jobs=3 --load-average=1.75"
+EMERGE_DEFAULT_OPTS="--jobs=$_CORES"
 
 USE="bindist mmx sse sse2"
 PORTDIR="/usr/portage"
