@@ -1,5 +1,6 @@
 {
 	"variables": {
+		"aws_ami_groups": "",
 		"aws_instance_type": "t2.micro"
 	},
 	"builders": [
@@ -36,6 +37,7 @@
 			]
 		},
 		{
+			"ami_groups": "{{user `aws_ami_groups`}}",
 			"ami_name": "gentoo-amd64-{{timestamp}}",
 			"ami_virtualization_type": "hvm",
 			"instance_type": "{{user `aws_instance_type`}}",
