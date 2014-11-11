@@ -19,7 +19,7 @@ ec2-user
 EOF
 sed -i 's/vagrant/ec2-user/g' /mnt/gentoo/etc/sudoers
 
-# Copy the existing ssh keys to to ec2-user so packer can continue
+# Copy the existing ssh keys to the ec2-user so packer can continue
 mkdir -p /mnt/gentoo/home/ec2-user/.ssh
 cp /home/ec2-user/.ssh/authorized_keys /mnt/gentoo/home/ec2-user/.ssh/authorized_keys
 $_CHROOT chmod -R 0700 /home/ec2-user/.ssh
