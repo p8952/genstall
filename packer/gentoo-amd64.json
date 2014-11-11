@@ -51,6 +51,7 @@
 			"region": "eu-west-1",
 			"source_ami": "ami-892fe1fe",
 			"ssh_username": "ec2-user",
+			"tags": { "genstall": "true" },
 			"type": "amazon-ebs"
 		}
 	],
