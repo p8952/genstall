@@ -8,3 +8,5 @@ _EMERGE $SOFTWARE
 for D in $DAEMONS; do
 	$_CHROOT rc-update add $D default
 done
+
+$_CHROOT emerge -uND @world
