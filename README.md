@@ -11,7 +11,7 @@ Boot from a [Live CD](http://www.sysresccd.org/SystemRescueCd_Homepage) and run:
 
 	curl -L https://api.github.com/repos/p8952/genstall/tarball > genstall.tar.gz
 	tar xvf genstall.tar.gz
-	cd p8952-genstall-xxxx
+	cd p8952-genstall-*
 	bash install.sh
 
 
