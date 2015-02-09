@@ -10,7 +10,7 @@ for D in $DAEMONS; do
 done
 
 _EMERGE app-portage/gentoolkit
-$_CHROOT emerge -uND @world
+$_CHROOT emerge -uND --with-bdeps=y @world
 $_CHROOT emerge --depclean
 $_CHROOT revdep-rebuild
 $_CHROOT rm -rf /var/tmp/portage/*
